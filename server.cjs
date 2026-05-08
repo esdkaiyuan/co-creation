@@ -1715,7 +1715,9 @@ app.post('/api/projects/:id/verify-password', async (req, res) => {
 
 startServer();
 
-// 启动定时清理任务
-require('./cleanup_deleted_projects.js');
+// 启动定时清理任务(使用动态导入ES模块)
+import('./cleanup_deleted_projects.js').catch(err => {
+  console.error('启动定时清理任务失败:', err);
+});
 
 module.exports = app;

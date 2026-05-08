@@ -13,10 +13,9 @@ dist/
 .git/
 .gitignore
 
-# Docker相关
+# Docker相关(保留必要的脚本文件)
 Dockerfile
 .dockerignore
-docker-entrypoint.sh
 
 # 文档和截图
 *.md
@@ -33,10 +32,9 @@ diagnostic.html
 fix-*.html
 token-diagnostic.html
 
-# 脚本文件
+# 脚本文件(保留docker-entrypoint.sh)
 *.bat
 *.ps1
-*.sh
 
 # 其他
 .DS_Store

@@ -10,8 +10,8 @@ RUN apk add --no-cache python3 make g++
 # 复制package.json和package-lock.json
 COPY package*.json ./
 
-# 安装依赖
-RUN npm ci --only=production && \
+# 安装所有依赖(包括devDependencies,用于构建前端)
+RUN npm ci && \
     npm cache clean --force
 
 # 复制源代码

@@ -1,0 +1,92 @@
+# 宝塔面板 Docker 部署说明
+
+## 镜像信息
+
+- **镜像名称**: `esdkaiyuan/co-creation:latest`
+- **镜像大小**: 746MB
+- **GitHub**: https://github.com/esdkaiyuan/co-creation
+
+---
+
+## 快速部署
+
+### 1. 拉取镜像
+
+```bash
+docker pull esdkaiyuan/co-creation:latest
+```
+
+### 2. 运行容器
+
+```bash
+docker run -d \
+  --name co-creation \
+  --restart always \
+  -p 3000:3000 \
+  -e DB_HOST=host.docker.internal \
+  -e DB_PORT=3306 \
+  -e DB_USER=co_creation_esdk \
+  -e DB_PASSWORD=GchzPPQ8sM6Rc2Xn \
+  -e DB_NAME=co_creation_esdk \
+  -e JWT_SECRET=your-secret-key-change-in-production \
+  -e JWT_EXPIRES_IN=7d \
+  -e PORT=3000 \
+  -v /www/wwwroot/co-creation/uploads:/app/uploads \
+  esdkaiyuan/co-creation:latest
+```
+
+### 3. 配置反向代理
+
+在宝塔面板中:
+1. 网站 → 添加站点 (域名: co-creation.esdkaiyuan.online)
+2. SSL → 申请证书
+3. 反向代理 → 目标URL: http://127.0.0.1:3000
+
+---
+
+## 环境变量说明
+
+| 变量 | 说明 | 示例 |
+|------|------|------|
+| DB_HOST | 数据库主机 | host.docker.internal |
+| DB_PORT | 数据库端口 | 3306 |
+| DB_USER | 数据库用户 | co_creation_esdk |
+| DB_PASSWORD | 数据库密码 | GchzPPQ8sM6Rc2Xn |
+| DB_NAME | 数据库名 | co_creation_esdk |
+| JWT_SECRET | JWT密钥 | (请修改为随机字符串) |
+| JWT_EXPIRES_IN | Token过期时间 | 7d |
+| PORT | 应用端口 | 3000 |
+
+---
+
+## 数据卷挂载
+
+```
+宿主机: /www/wwwroot/co-creation/uploads
+容器: /app/uploads
+```
+
+---
+
+## 验证部署
+
+```bash
+# 检查容器状态
+docker ps | grep co-creation
+
+# 查看日志
+docker logs co-creation
+
+# 测试API
+curl http://localhost:3000/api/health
+```
+
+---
+
+## 更新镜像
+
+```bash
+docker pull esdkaiyuan/co-creation:latest
+docker stop co-creation && docker rm co-creation
+# 重新运行上面的docker run命令
+```

@@ -1,0 +1,43 @@
+# 依赖目录
+node_modules/
+
+# 构建输出
+dist/
+
+# 环境变量文件(生产环境通过Docker环境变量配置)
+.env
+.env.local
+.env.production
+
+# Git相关
+.git/
+.gitignore
+
+# Docker相关
+Dockerfile
+.dockerignore
+docker-entrypoint.sh
+
+# 文档和截图
+*.md
+*.png
+*.jpg
+*.jpeg
+docs/
+
+# 测试文件
+test*.html
+test*.cjs
+test*.bat
+diagnostic.html
+fix-*.html
+token-diagnostic.html
+
+# 脚本文件
+*.bat
+*.ps1
+*.sh
+
+# 其他
+.DS_Store
+Thumbs.db

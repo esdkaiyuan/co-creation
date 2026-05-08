@@ -1,0 +1,24 @@
+{
+  "name": "co-creation-backend",
+  "version": "1.0.0",
+  "description": "共创平台后端 API 服务",
+  "main": "server.cjs",
+  "scripts": {
+    "start": "node server.cjs",
+    "dev": "nodemon server.cjs",
+    "setup": "npm install && echo 安装完成，请运行: npm run dev"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.6.5",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "keywords": ["co-creation", "collaboration", "api"],
+  "author": "",
+  "license": "MIT"
+}
